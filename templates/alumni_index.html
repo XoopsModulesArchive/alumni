@@ -1,0 +1,117 @@
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function CLA(CLA) { var MainWindow = window.open (CLA, "_blank","width=500,height=300,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no");}
+//-->
+</script>
+<table cellspacing="1" class="outer" style="width:100%;">
+  <tr>
+    <th align="center"><{$add_from_sitename}> <{$add_from_title}></th>
+  </tr>
+  <tr><td class="odd">
+      <table border="0" style="width:100%;">
+		  <tr>
+		    <td class="head" align="center"><{$front_intro}></td></tr>
+		</table></td></tr>
+  <{if $moderated}>
+	  <{if $xoops_isadmin}>
+	  <tr>
+	    <td align="center" class="even">
+	    <table class="outer" cellspacing="0" style="width:50%;">
+		  <tr>
+		    <td class="head" align="center"><{$admin_block}></td>
+		  </tr>
+		  <tr>
+		    <td class="odd" align="center"><{$confirm_ads}></td>
+		  </tr>
+		</table>
+		</td>
+	  </tr>
+	  <{/if}>
+  <{/if}>
+  </table>
+  <table cellspacing="1" class="outer" style="width:100%;">
+<tr>
+<td align="center" valign="top" width="50%"><br /><h3><{$add_listing}></h3><br />
+</td>
+</tr>
+</table>
+<table border="1" class="even" width="80%" align="center">
+	<tr>
+		<td class="even" align="center"><hr />
+			<table border="0">
+  <form name='search' id='search' action='<{$xoops_url}>/search.php' method='post' onsubmit='return xoopsFormValidate_search();'>
+					<input type='hidden' name='mids[]' value='<{$xmid}>' />
+					<td><b><{$search_listings}></b></td>
+					<td><input type='text' name='query' id='query' size='15' maxlength='255' value='' /></td>
+					<td><select  size='1' name='andor' id='andor'>
+					<option value='AND' selected='selected'><{$all_words}></option>
+					<option value='OR'><{$any_words}></option>
+					<option value='exact'><{$exact_match}></option>
+					</select></td>
+					<td><input type='submit' class='formButton' name='submit'  id='submit' value='Search' /></td>
+					<input type='hidden' name='action' id='action' value='results' />
+					</form>
+		</table>
+		</td>
+	</tr>
+</table>
+<script type='text/javascript'>
+		<!--
+		function xoopsFormValidate_search(){}
+		//-->
+		</script>
+<table cellspacing="1" class="outer" style="width:100%;">
+<tr>
+  	<td class="odd">
+      <table border="0" style="width:100%;">
+				<{foreach item=category from=$categories}>
+		
+	<td align="left">	
+<table  class="outer" cellspacing='5' cellpadding='0' align="center"><tr>
+<td class="head" valign="top" align="center">
+    <{if $category.image != ""}>
+    <{$category.image}>
+    <{/if}>
+   <br /><a href="<{$xoops_url}>/modules/alumni/index.php?pa=view&amp;cid=<{$category.id}>"><b><{$category.title}></b></a><br />(<{$category.totallisting}>)&nbsp;<{$category.new}></td></tr><tr><td align="center"><{$category.subcategories}></td></tr>
+			</table></td>
+			<{if $category.count is div by 3}>
+			</tr><tr>
+			<{/if}>
+		<{/foreach}>
+     </table> </td>
+     </tr> 
+ <tr><td><table><tr>
+ <td class="even" align="center"><{$total_listings}><br /><{$total_confirm}></td></tr></table></td></tr></table>
+
+ <table cellspacing="1" class="outer" style="width:100%;">
+  <tr>
+    <th align="center"><{$last_head}></th>
+  </tr>
+  <tr>
+    <td style="padding:0;">
+   	  <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+        <tr>
+		  <{if $xoops_isadmin}><td class="head"></td><{/if}>
+          <td class="head"><{$last_head_name}></td>
+	  <td class="head"><{$last_head_school}></td>
+          <td class="head"><{$class_of}></td>
+          <td class="head"><{$last_head_photo}></td>
+        </tr>
+        <{foreach item=item from=$items}>
+		<tr class="<{cycle values="odd,even"}>">
+		  <{if $xoops_isadmin}><td><{$item.admin}></td><{/if}>
+          <td><b><{$item.name}></b><br /></td>
+	  <td><{$item.school}></td>
+	   <td><{$item.year}></td>
+          <td><{$item.photo}></td>
+        </tr>
+		<{/foreach}>
+      </table>
+	</td>
+  </tr>
+</table>
+
+<br /><br />
+<{include file='db:system_notification_select.html'}>
+<br /><br />
+

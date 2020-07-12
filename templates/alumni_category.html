@@ -1,0 +1,126 @@
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function CLA(CLA) { var MainWindow = window.open (CLA, "_blank","width=500,height=300,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no");}
+//-->
+</script>
+<table cellspacing="1" class="outer" style="width:100%;">
+  
+
+  
+  <tr>
+  
+    <th align="center"><{$school_name}> <{$add_from_title}></th>
+    
+  </tr>
+<tr>
+    <td class="newstitle" height="18"><{$category_path}></td>
+  </tr>
+  <{if $scaddress != ""}>
+  <tr>
+    <td class="head" align="center" style="padding:10px 10px 10px 10px;">
+    <{if $top_scphoto != ""}>
+    <{$top_scphoto}><{/if}><br />
+    <{if $scmotto != ""}>
+    <b><i>"<{$scmotto}>"</i></b><{/if}></td>
+  </tr>
+  <tr>
+    <td class="odd" align="left"><{$scaddress}> 
+     <{if $scaddress2 != ""}><br />
+     <{$scaddress2}>
+     <{/if}>
+     <br /> <{$sccity}>,&nbsp;<{$scstate}>&nbsp;<{$sczip}><br />
+    <{if $scphone != ""}>
+    <{$head_scphone}> <{$scphone}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <{if $scfax != ""}>
+    <{$head_scfax}> <{$scfax}><{/if}><{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <{if $scurl != ""}><br />
+    <a href='http://<{$scurl}>' target='_blank'><{$web}></a><{/if}></td>   
+  </tr>
+  <{/if}>
+  <{if $subcategories <= "1"}>
+  <tr>
+    <td class="head" align="center" style="padding:10px 10px 10px 10px;"><{$add_listing}></td>
+  </tr>
+   <{/if}>
+   <{if $usecat == "1"}>
+  <tr>
+    <td class="odd" align="left"><{$nav_main}> <{$nav_sub}> (<{$nav_subcount}>)</th>
+  </tr>
+  <{/if}>
+  <{if $moderated}>
+	  <{if $xoops_isadmin}>
+	  <tr>
+	    <td align="center" class="even">
+	    <table class="outer" cellspacing="0" style="width:50%;">
+		  <tr>
+		    <td class="head" align="center"><{$admin_block}></td>
+		  </tr>
+		  <tr>
+		    <td class="odd" align="center"><{$confirm_ads}></td>
+		  </tr>
+		</td>
+		</table>
+	  </tr>
+	  <{/if}>
+  <{/if}>
+  <tr>
+  	<td class="odd">
+      <table border="0" style="width:100%;">
+		<{if $lang_subcat}>
+<tr>
+<td>
+<{$lang_subcat}></td></tr><tr>
+<{/if}>
+
+	<{foreach item=subcat from=$subcategories}>
+	<td align="left">
+	<table border="1" class="outer" cellspacing='5' cellpadding='0' align="center"><tr><td class="head"><b><a href="index.php?pa=view&amp;cid=<{$subcat.id}>"><{$subcat.title}></a></b>&nbsp;(<{$subcat.totallinks}>)<{$subcat.new}></td></tr><tr><td align="center"><font class="subcategories"><{$subcat.infercategories}></font></td></tr>
+	</table></td>
+	<{if $subcat.count is div by 4}>
+	</tr>
+	<tr>
+	<{/if}>
+	<{/foreach}>
+      </table>
+    </td>
+  </tr>
+  <tr>
+  	<td class="even" align="center"><{$school_listings}><{$nav_subcat}><{$sub_listings}></td>
+  </tr>
+  <tr>
+    <td>
+
+<{if $show_nav == true}>
+      <div align="center"><{$lang_sortby}>  <{$lang_name}> (<a href="index.php?pa=view&cid=<{$cat}>&orderby=nameA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_nameatoz}>" /></a><a href="index.php?pa=view&cid=<{$cat}>&orderby=nameD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_nameztoa}>" /></a>)<{$lang_date}> (<a href="index.php?pa=view&cid=<{$cat}>&orderby=dateA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_dateold}>" /></a><a href="index.php?pa=view&cid=<{$cat}>&orderby=dateD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_datenew}>" /></a>)
+      <br /><b><{$lang_cursortedby}></b>
+      <hr / width="97%">
+      </div>
+      <{/if}>
+<div align="center"><{$nav_page}><br /><br /></div>
+
+   	  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+		  <{if $xoops_isadmin}><td class="head"></td><{/if}>
+          <td class="head"><{$last_head_name}></td>
+	  <td class="head"><{$last_head_school}></td>
+          <td class="head"><{$class_of}></td>
+          <td class="head"><{$last_head_photo}></td>
+        </tr>
+        <{foreach item=item from=$items}>
+		<tr class="<{cycle values="odd,even"}>">
+		  <{if $xoops_isadmin}><td><{$item.admin}></td><{/if}>
+          <td><b><{$item.name}></b></td>
+	   <td><{$item.school}></td>
+          <td><{$item.year}></td>
+          <td><{$item.photo}></td>
+        </tr>
+		<{/foreach}>
+       </table>
+	</td>
+  </tr>
+</table style="width:100%;">
+<br /><br />
+<div align="center"><{$nav_page}><br /><br /></div>
+<br /><br />
+<{$nav_main}>
+  <br /><br />
